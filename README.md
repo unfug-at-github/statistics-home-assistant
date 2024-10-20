@@ -10,7 +10,31 @@ It fixes several issues:
 It also adds one additional feature:
 - A "refresh_interval" parameter allows to re-compute the value on a regular basis. Usually values only change when a new value is received or an old value expires. However, the value of time-based statistics change just because the interval is shifting with time, and so a re-calculation even without external triggers is making sense.
 
+As a side effect, the "keep_last_sample" will have no effect if "max_age" was specified
+
 It also includes a test setup (configuration.yaml) to demonstrate the changes.
+
+Here is the definition of the sample sensors:
+```
+sensor: 
+  - platform: statistics
+    name: "xxx2_test_avg_step_10s_refresh"
+    entity_id: sensor.xxx_test_float
+    state_characteristic: average_step
+    max_age:
+      seconds: 10
+    refresh_interval:
+      seconds: 1
+  
+  - platform: statistics
+    name: "xxx2_test_avg_linear_10s_refresh"
+    entity_id: sensor.xxx_test_float
+    state_characteristic: average_linear
+    max_age:
+      seconds: 10
+    refresh_interval:
+      seconds: 1
+```
 
 I'm trying to get these changes integrated into the core system, however, this seems to be something that requires quite some time. I need to split this up into tiny chunks and wait until they get approved. So far nothing has been accepted yet after roughly two months, that's why I publish this as a custom component to collect some feedback from others.
 
