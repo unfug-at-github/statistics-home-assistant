@@ -1,0 +1,58 @@
+
+# Loads default set of integrations. Do not remove.
+default_config:
+
+# Load frontend themes from the themes folder
+frontend:
+  themes: !include_dir_merge_named themes
+
+template: 
+  - trigger:
+      - platform: time_pattern
+        seconds: "/2"
+    sensor:
+      - name: "xxx_test_float"
+        unit_of_measurement: 'x'
+        state_class: measurement
+        availability: "true"
+        state: >   
+          {% set now = now() %}
+          {% set secs = now.second + (60 * now.minute) %}
+          {% set modsecs = secs % 90 | int %}
+          {% if (secs % 2) == 1 %}
+            {% set secs = secs-1 %}}
+          {% elif modsecs <= 10 %}
+            {{ modsecs }}
+          {% elif modsecs <= 30 %}
+            10
+          {% elif modsecs <= 40 %}
+            {{ 40 - modsecs }}
+          {% elif modsecs <= 60 %}
+            0
+          {% elif modsecs <= 70 %}
+            10
+          {% else %}
+            0
+          {% endif %}
+
+sensor: 
+  - platform: statistics
+    name: "xxx2_test_avg_step_10s_refresh"
+    entity_id: sensor.xxx_test_float
+    state_characteristic: average_step
+    max_age:
+      seconds: 10
+    refresh_interval:
+      seconds: 1
+  
+  - platform: statistics
+    name: "xxx2_test_avg_linear_10s_refresh"
+    entity_id: sensor.xxx_test_float
+    state_characteristic: average_linear
+    max_age:
+      seconds: 10
+    refresh_interval:
+      seconds: 1
+ 
+logger:
+  default: info
