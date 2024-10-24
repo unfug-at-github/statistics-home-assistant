@@ -36,7 +36,7 @@ sensor:
       seconds: 1
 ```
 
-I'm trying to get these changes integrated into the core system, however, this seems to be something that requires quite some time. I need to split this up into tiny chunks and wait until they get approved. So far nothing has been accepted yet after roughly two months, that's why I publish this as a custom component to collect some feedback from others.
+I'm trying to get these changes integrated into the core system, however, this seems to be something that requires quite some time. I need to split this up into tiny chunks and wait until they get approved. So far the calculations based on a single value has been accepted and I hope the spikes will also follow soon.
 
 This enhanced component solves issues discussed here:
 [1](https://github.com/home-assistant/core/issues/119738)
