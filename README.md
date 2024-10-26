@@ -12,12 +12,14 @@ It also adds one additional feature:
 
 As a side effect, the "keep_last_sample" will have no effect if "max_age" was specified
 
-It also includes a test setup (configuration.yaml) to demonstrate the changes.
+It also includes a test setup (configuration.yaml) to demonstrate the changes. You can easily see how the ouput of the standard and the custom component differ.
+
+![screenshot](screenshot.png)
 
 Here is the definition of the sample sensors:
 ```
 sensor: 
-  - platform: statistics
+  - platform: statistics_custom
     name: "xxx2_test_avg_step_10s_refresh"
     entity_id: sensor.xxx_test_float
     state_characteristic: average_step
@@ -26,7 +28,7 @@ sensor:
     refresh_interval:
       seconds: 1
   
-  - platform: statistics
+  - platform: statistics_custom
     name: "xxx2_test_avg_linear_10s_refresh"
     entity_id: sensor.xxx_test_float
     state_characteristic: average_linear
@@ -35,8 +37,9 @@ sensor:
     refresh_interval:
       seconds: 1
 ```
-
-I'm trying to get these changes integrated into the core system, however, this seems to be something that requires quite some time. I need to split this up into tiny chunks and wait until they get approved. So far the calculations based on a single value has been accepted and I hope the spikes will also follow soon.
+I'm trying to get the changes integrated into the core system, but as it seems this will only be happening partially.
+So far the calculations based on a single value has been accepted and the spikes are also done. These issues should be fixed with one of the next releases.
+It doesn't seem like I will get the remaining things in.
 
 This enhanced component solves issues discussed here:
 [1](https://github.com/home-assistant/core/issues/119738)
