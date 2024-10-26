@@ -1,6 +1,6 @@
 {
-  "domain": "statistics",
-  "name": "Statistics",
+  "domain": "statistics_custom",
+  "name": "Statistics (custom)",
   "version": "1.0",
   "after_dependencies": ["recorder"],
   "codeowners": ["@ThomDietrich", "@unfug-at-github"],
