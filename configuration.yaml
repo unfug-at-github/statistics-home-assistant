@@ -18,10 +18,11 @@ template:
         state: >   
           {% set now = now() %}
           {% set secs = now.second + (60 * now.minute) %}
-          {% set modsecs = secs % 90 | int %}
           {% if (secs % 2) == 1 %}
-            {% set secs = secs-1 %}}
-          {% elif modsecs <= 10 %}
+            {% set secs = secs-1 %}
+          {% endif %}
+          {% set modsecs = secs % 90 | int %}
+          {% if modsecs <= 10 %}
             {{ modsecs }}
           {% elif modsecs <= 30 %}
             10
@@ -36,8 +37,8 @@ template:
           {% endif %}
 
 sensor: 
-  - platform: statistics
-    name: "xxx2_test_avg_step_10s_refresh"
+  - platform: statistics_custom
+    name: "xxx_test_avg_step_10s_refresh"
     entity_id: sensor.xxx_test_float
     state_characteristic: average_step
     max_age:
@@ -45,8 +46,8 @@ sensor:
     refresh_interval:
       seconds: 1
   
-  - platform: statistics
-    name: "xxx2_test_avg_linear_10s_refresh"
+  - platform: statistics_custom
+    name: "xxx_test_avg_linear_10s_refresh"
     entity_id: sensor.xxx_test_float
     state_characteristic: average_linear
     max_age:
