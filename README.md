@@ -20,7 +20,7 @@ Here is the definition of the sample sensors:
 ```
 sensor: 
   - platform: statistics_custom
-    name: "xxx2_test_avg_step_10s_refresh"
+    name: "xxx_test_avg_step_10s_refresh"
     entity_id: sensor.xxx_test_float
     state_characteristic: average_step
     max_age:
@@ -29,7 +29,7 @@ sensor:
       seconds: 1
   
   - platform: statistics_custom
-    name: "xxx2_test_avg_linear_10s_refresh"
+    name: "xxx_test_avg_linear_10s_refresh"
     entity_id: sensor.xxx_test_float
     state_characteristic: average_linear
     max_age:
