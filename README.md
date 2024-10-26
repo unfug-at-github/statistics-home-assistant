@@ -12,7 +12,7 @@ It also adds one additional feature:
 
 As a side effect, the "keep_last_sample" will have no effect if "max_age" was specified
 
-It also includes a test setup (configuration.yaml) to demonstrate the changes. You can easily see how the ouput of the standard and the custom component differ.
+It also includes a test setup (configuration.yaml) to demonstrate the changes. You can easily see how the ouput of the standard and the custom component differ. The yellow line is the input, the blue line the standard sensor and the orange one this custom sensor. The blue line is broken in several places because the standard sensor is unable to compute a value if there are less than two value changes in the buffer.
 
 ![screenshot](screenshot.png)
 
