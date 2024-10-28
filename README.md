@@ -37,7 +37,7 @@ sensor:
       seconds: 1
 ```
 I managed to get some of the changes integrated into the core system, but not all of them.
-The following changes were added to the core system:
+The following changes were added to the core system, so they should be included in one of the next releases:
 
 - spikes
 - single value issue
