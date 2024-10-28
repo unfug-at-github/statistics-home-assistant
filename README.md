@@ -1,9 +1,8 @@
 This is an enhanced copy of the home assistant statistics component including some improvements.
 
 It fixes several issues:
-- Spikes at startup
-- Incorrect values due to a lack of synchronization of the internal value queue
-- Values are provided even if only a single value is in the buffer (the standard component returns unknown in these cases). E.g. the average of [7] becomes 7, not unknown.
+- **Spikes at startup** due to a lack of synchronization of the internal value queue 
+- Values are provided even if only a **single value** is in the buffer (the standard component returns unknown in these cases). E.g. the average of [7] becomes 7, not unknown.
 - When a time interval is specified the average is computed over the given interval. The standard component only computes the average between the first and the last value change within the interval, which ignores the time before the first change as well as the time after the last change. This way of comuting time-based average leads to results that have led to a lot of questions / discussions in the forum.
 - The value before the first value change within the interval is taken into account for other computations as well. E.g. if the value changes only once from 2.0 to 1.0 within the interval, the max would be computed as 1.0 by the standard component. Now it becomes 2.0 (the last value reported before the interval).
 
@@ -37,9 +36,14 @@ sensor:
     refresh_interval:
       seconds: 1
 ```
-I'm trying to get the changes integrated into the core system, but as it seems this will only be happening partially.
-So far the calculations based on a single value has been accepted and the spikes are also done. These issues should be fixed with one of the next releases.
-It doesn't seem like I will get the remaining things in.
+I managed to get some of the changes integrated into the core system, but not all of them.
+The following changes were added to the core system:
+
+- spikes
+- single value issue
+- adding values to the buffer even when the value wasn't changed (has a similar effect like the refresh interval)
+
+It doesn't seem like I will get the remaining things in, so I leave this here as an alternative for those who want the other features as well.
 
 This enhanced component solves issues discussed here:
 [1](https://github.com/home-assistant/core/issues/119738)
